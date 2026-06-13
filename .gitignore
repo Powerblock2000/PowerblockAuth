@@ -1,11 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-/home/linuxguy/PowerblockAuth/addons/powerblock_auth/PowerblockAuth/Email/powerblock_auth_email.gd.uid
-/home/linuxguy/PowerblockAuth/Crypt.tscn
-/home/linuxguy/PowerblockAuth/crypt.gd
-/home/linuxguy/PowerblockAuth/powerblock_auth_email.tscn
-/home/linuxguy/PowerblockAuth/crypt.gd.uid
+
+/addons/com.heroiclabs.nakama/
+
+/addons/godot_super-wakatime/
 
 Crypt.tscn
 
