@@ -1,0 +1,61 @@
+extends Window
+
+class_name AuthEmail
+
+signal complete_login(email : String, password: String, username : String, create_account : bool)
+
+@onready var login: Control = $TabContainer/Login
+@onready var signup: Control = $TabContainer/Signup
+@onready var loading: ColorRect = $Loading
+@onready var color_rect: ColorRect = $ColorRect
+@onready var company_logo: TextureRect = $CompanyLogo
+
+var logo : Texture2D
+var color : Color
+
+func fade_in(node: Control, time : float = .3) -> void:
+	node.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	node.show()
+	
+	var tween : Tween = create_tween()
+	
+	tween.tween_property(node, "modulate", Color(1.0, 1.0, 1.0, 1.0), time)
+	await tween.finished
+	return
+
+func fade_out(node: Control, time : float = .3) -> void:
+	var tween : Tween = create_tween()
+	
+	tween.tween_property(node, "modulate", Color(1.0, 1.0, 1.0, 0.0), time)
+	await tween.finished
+	node.hide()
+	return
+
+func error(error_text) -> void:
+	fade_out(loading)
+	login.error(error_text)
+	signup.error(error_text)
+
+func _ready() -> void:
+	login.login_complete.connect(login_complete)
+	signup.signup_complete.connect(signup_complete)
+	check_logo.call_deferred()
+
+func check_logo() -> void:
+	if logo and color:
+		company_logo.texture = logo
+		color_rect.color = color
+
+func login_complete(email: String, password: String) -> void:
+	fade_in(loading)
+	await get_tree().create_timer(3).timeout
+	complete_login.emit(email, password, "", false)
+
+func signup_complete(email: String, username: String, password: String) -> void:
+	fade_in(loading)
+	await get_tree().create_timer(3).timeout
+	complete_login.emit(email, password, username, true)
+
+func _on_close_requested() -> void:
+	complete_login.emit(null, null, null, null)
+	queue_free()
