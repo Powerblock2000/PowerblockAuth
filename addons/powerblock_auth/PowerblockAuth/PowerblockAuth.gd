@@ -1,6 +1,6 @@
 extends Node
 
-enum AuthMethods {DEVICE_ID, EMAIL, APPLE, GAME_CENTER, FACEBOOK, FACEBOOK_INSTANT, GOOGLE, GOOGLE_PLAY, STEAM, CUSTOM}
+enum AuthMethods {DEVICE_ID, EMAIL}
 
 signal authenticated(session: NakamaSession)
 

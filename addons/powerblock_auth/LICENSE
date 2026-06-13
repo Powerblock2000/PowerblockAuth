@@ -1,0 +1,33 @@
+===============================================================================
+PLUGIN LICENSE AGREEMENT
+===============================================================================
+
+This plugin is distributed under a split license. The code and the visual assets
+are governed by two separate sets of terms, as detailed below.
+
+-------------------------------------------------------------------------------
+PART 1: VISUAL ELEMENTS & UI LAYOUT LICENSE
+-------------------------------------------------------------------------------
+This part applies strictly to all visual elements of the addon, including but
+not limited to: user interface layouts, textures, logos, and the player-facing
+visual presentation.
+
+1. PERMISSIONS: You are granted permission to display these visual elements
+   in your games. You are permitted to pass your own custom image/logo into
+   the plugin's designated logo-handling function for co-branding purposes.
+2. RESTRICTIONS: When passing a custom logo into the plugin, the Author's
+   original logo will be maintained as a watermark. You MAY NOT alter the
+   plugin's code or visual hierarchy to bypass, hide, obscure, resize, or
+   remove this watermark. The Author's watermark must remain visible exactly
+   as rendered by the plugin's default behavior.
+-------------------------------------------------------------------------------
+PART 2: SOFTWARE CODE LICENSE (MIT LICENSE)
+-------------------------------------------------------------------------------
+
+Copyright 2026 Powerblock2000
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
