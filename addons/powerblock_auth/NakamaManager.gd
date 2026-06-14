@@ -3,7 +3,7 @@ extends Node
 # Nakama settings
 const CONNECT = true
 
-const NAKAMA_IP = "api.nakama.powerblock.hackclub.app"
+const NAKAMA_IP = "127.0.0.1"
 const NAKAMA_PORT = 443
 const NAKAMA_HTTP = "https"
 const NAKAMA_ENCRYPT_KEY = "defaultkey"

@@ -2,8 +2,6 @@ extends Control
 @onready var label: Label = $Label
 @onready var button: Button = $Button
 
-## TODO Fix on web
-
 func _ready() -> void:
 	PowerblockAuth.set_branding(load("res://icon.svg"), Color(0.0, 1.0, 0.0, 1.0))
 	await NakamaManager.connect_to_nakama(PowerblockAuth.AuthMethods.EMAIL)
