@@ -3,7 +3,6 @@ extends Control
 @onready var button: Button = $Button
 
 func _ready() -> void:
-	PowerblockAuth.set_branding(load("res://icon.svg"), Color(0.0, 1.0, 0.0, 1.0))
 	await NakamaManager.connect_to_nakama(PowerblockAuth.AuthMethods.EMAIL)
 	button.show()
 
