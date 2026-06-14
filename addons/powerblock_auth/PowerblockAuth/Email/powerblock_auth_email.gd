@@ -9,6 +9,7 @@ signal complete_login(email : String, password: String, username : String, creat
 @onready var loading: ColorRect = $Loading
 @onready var color_rect: ColorRect = $ColorRect
 @onready var company_logo: TextureRect = $CompanyLogo
+@onready var animation_player: AnimationPlayer = $Loading/AnimationPlayer
 
 var logo : Texture2D
 var color : Color
@@ -31,15 +32,18 @@ func fade_out(node: Control, time : float = .3) -> void:
 	node.hide()
 	return
 
-func error(error_text) -> void:
+func error(error_text: String) -> void:
 	fade_out(loading)
-	login.error(error_text)
-	signup.error(error_text)
+	print(error_text)
+	login.error(str(error_text))
+	signup.error(str(error_text))
 
 func _ready() -> void:
+	loading.hide()
 	login.login_complete.connect(login_complete)
 	signup.signup_complete.connect(signup_complete)
 	check_logo.call_deferred()
+	$TabContainer/Signup/MarginContainer/VBoxContainer/ErrorSignup.custom_maximum_size = Vector2()
 
 func check_logo() -> void:
 	if logo and color:
@@ -48,14 +52,15 @@ func check_logo() -> void:
 
 func login_complete(email: String, password: String) -> void:
 	fade_in(loading)
+	animation_player.play("Loading")
 	await get_tree().create_timer(3).timeout
 	complete_login.emit(email, password, "", false)
 
 func signup_complete(email: String, username: String, password: String) -> void:
 	fade_in(loading)
+	animation_player.play("Loading")
 	await get_tree().create_timer(3).timeout
 	complete_login.emit(email, password, username, true)
 
 func _on_close_requested() -> void:
 	complete_login.emit(null, null, null, null)
-	queue_free()

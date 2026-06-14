@@ -13,6 +13,7 @@ var password : String
 
 func error(error_text: String) -> void:
 	error_login.text = error_text
+	error_login.show()
 
 func _ready() -> void:
 	email_login.text_changed.connect(email_changed)
@@ -32,7 +33,7 @@ func email_changed(new_email: String) -> void:
 	if new_email == "":
 		login.disabled = true
 	email = new_email
-	print(email)
+	#print(email)
 
 func password_changed(new_password: String) -> void:
 	if new_password == "":

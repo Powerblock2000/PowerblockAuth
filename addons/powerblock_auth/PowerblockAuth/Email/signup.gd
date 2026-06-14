@@ -14,6 +14,7 @@ var password : String
 
 func error(error_text: String) -> void:
 	error_signup.text = error_text
+	error_signup.show()
 
 func _ready() -> void:
 	email_signup.text_changed.connect(email_changed)
@@ -34,13 +35,13 @@ func email_changed(new_email: String) -> void:
 	if new_email == "":
 		signup.disabled = true
 	email = new_email
-	print(email)
+	#print(email)
 
 func username_changed(new_username: String) -> void:
 	if new_username == "":
 		signup.disabled = true
 	username = new_username
-	print(username)
+	#print(username)
 
 func password_changed(new_password: String) -> void:
 	if new_password == "":

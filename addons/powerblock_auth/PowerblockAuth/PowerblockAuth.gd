@@ -22,6 +22,8 @@ func load_ui_scene() -> PackedScene:
 func authenticate(method: AuthMethods) -> void:
 	
 	var session : NakamaSession
+	
+	
 	if method == AuthMethods.DEVICE_ID:
 		var deviceid = OS.get_unique_id()
 		
@@ -38,7 +40,7 @@ func authenticate(method: AuthMethods) -> void:
 		
 		var login : Array = await powerblock_auth_email.complete_login
 		
-		powerblock_auth_email.queue_free()
+		#powerblock_auth_email.queue_free()
 		
 		if login.all(func method(element): return element != null):
 			session = await NakamaManager.nakama_client.authenticate_email_async(login[0], login[1], login[2], login[3])
@@ -47,9 +49,11 @@ func authenticate(method: AuthMethods) -> void:
 			return
 		
 		if session.is_exception():
-			powerblock_auth_email.error(session.exception)
+			powerblock_auth_email.error(str(session.exception.message))
 			authenticate(AuthMethods.EMAIL)
 			return
+	
+		powerblock_auth_email.queue_free()
 	
 	authenticated.emit(session)
 	
