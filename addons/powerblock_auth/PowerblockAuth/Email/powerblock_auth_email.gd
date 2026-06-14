@@ -43,7 +43,6 @@ func _ready() -> void:
 	login.login_complete.connect(login_complete)
 	signup.signup_complete.connect(signup_complete)
 	check_logo.call_deferred()
-	$TabContainer/Signup/MarginContainer/VBoxContainer/ErrorSignup.custom_maximum_size = Vector2()
 
 func check_logo() -> void:
 	if logo and color:
@@ -64,3 +63,4 @@ func signup_complete(email: String, username: String, password: String) -> void:
 
 func _on_close_requested() -> void:
 	complete_login.emit(null, null, null, null)
+	queue_free()

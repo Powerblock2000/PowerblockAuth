@@ -85,7 +85,7 @@ func connect_to_nakama_defered(method: PowerblockAuth.AuthMethods) -> void:
 		PowerblockAuth.authenticate(method)
 		nakama_session = await PowerblockAuth.authenticated
 		if nakama_session == null:
-			push_error("Nakama session is null!")
+			print("Nakama session is null!")
 			_connected.emit(FAILED)
 			return
 	else:

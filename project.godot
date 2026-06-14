@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="PowerblockAuthv2"
+run/main_scene="uid://b858vi7d56m5r"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/use_filter=false
+config/icon="uid://dv8p3jnqxbcsh"
 
 [autoload]
 
@@ -22,8 +26,7 @@ PowerblockAuth="*uid://dmfsa3afxf2dc"
 
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="ignore"
 
 [editor_plugins]
 
