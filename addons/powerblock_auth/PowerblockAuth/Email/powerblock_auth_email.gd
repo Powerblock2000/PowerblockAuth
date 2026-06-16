@@ -45,8 +45,11 @@ func _ready() -> void:
 	check_logo.call_deferred()
 
 func check_logo() -> void:
-	if logo and color:
+	if logo:
+		company_logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		company_logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		company_logo.texture = logo
+	if color:
 		color_rect.color = color
 
 func login_complete(email: String, password: String) -> void:

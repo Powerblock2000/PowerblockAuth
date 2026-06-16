@@ -3,15 +3,19 @@ extends Node
 # Nakama settings
 const CONNECT = true
 
-const NAKAMA_IP = "127.0.0.1"
+const TRY_TO_REFRESH_SESSION = false
+
+const NAKAMA_IP = "api.nakama.powerblock.hackclub.app"
 const NAKAMA_PORT = 443
 const NAKAMA_HTTP = "https"
-const NAKAMA_ENCRYPT_KEY = "defaultkey"
+const NAKAMA_ENCRYPT_KEY = "KEY"
 
 # Nakama variables
 var nakama_client : NakamaClient
 var nakama_socket : NakamaSocket
 var nakama_session : NakamaSession
+var nakama_account : NakamaAPI.ApiAccount
+var nakama_user : NakamaAPI.ApiUser
 
 var previous_auth_method : PowerblockAuth.AuthMethods
 
@@ -41,7 +45,7 @@ func _process(delta: float) -> void:
 				save_auth_keys()
 
 func try_reload_session() -> NakamaSession:
-	if not FileAccess.file_exists("user://nakama_session.cfg"): return null
+	if not FileAccess.file_exists("user://nakama_session.cfg") or not TRY_TO_REFRESH_SESSION: return null
 	
 	#push_warning("Trying to reload session")
 	
@@ -55,6 +59,9 @@ func try_reload_session() -> NakamaSession:
 	if session.token == "" or session.token == null:
 		print("Session failed refreshing: %s" % session.created)
 		return null
+	
+	push_warning(session)
+	
 	return session
 
 func save_auth_keys() -> void:
@@ -63,11 +70,11 @@ func save_auth_keys() -> void:
 	config.set_value("nakama", "auth_token", nakama_session.token)
 	config.save("user://nakama_session.cfg")
 
-func connect_to_nakama(method: PowerblockAuth.AuthMethods) -> Error:
+func connect_to_nakama(method: PowerblockAuth.AuthMethods, try_to_refresh : bool = true) -> Error:
 	connect_to_nakama_defered.call_deferred(method)
 	return await _connected
 
-func connect_to_nakama_defered(method: PowerblockAuth.AuthMethods) -> void:
+func connect_to_nakama_defered(method: PowerblockAuth.AuthMethods, try_to_refresh : bool = true) -> void:
 	status = "Connection started..."
 	
 	if not CONNECT:
@@ -80,7 +87,11 @@ func connect_to_nakama_defered(method: PowerblockAuth.AuthMethods) -> void:
 	print("Authenticating...")
 	status = "Authenticating session..."
 	
-	var try_session : NakamaSession = try_reload_session()
+	var try_session : NakamaSession = null
+	
+	if try_to_refresh:
+		try_session = try_reload_session()
+	
 	if try_session == null:
 		PowerblockAuth.authenticate(method)
 		nakama_session = await PowerblockAuth.authenticated
@@ -103,6 +114,10 @@ func connect_to_nakama_defered(method: PowerblockAuth.AuthMethods) -> void:
 		push_error("Error connection socket: %s" % connected.exception)
 		_connected.emit(FAILED)
 		return
+	
+	status = "Getting user data..."
+	nakama_account = await nakama_client.get_account_async(nakama_session)
+	nakama_user = nakama_account.user
 	
 	previous_auth_method = method
 	
