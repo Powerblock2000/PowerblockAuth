@@ -3,6 +3,8 @@
 ---
 **Welcome to Powerblock Auth, the simple way to authenticate clients with Nakama!**
 
+Test the example project [here](https://powerblock2000.github.io/PowerblockAuth/WEBSITE/r2/index.html)
+
 This guide will help you get setup!
 
 ## Step 1: Install
@@ -42,3 +44,7 @@ We made this handy template to make sure you keep everything in the right spot:
 ![Template](https://github.com/Powerblock2000/PowerblockAuth/blob/main/addons/powerblock_auth/PowerblockAuth/AUTH%20template.png?raw=true)
 
 Put ANYTHING you want in the green space, but make sure to keep NOTHING in the red space
+
+## Credits:
+
+Loading icon from [GD Shaders](https://godotshaders.com/shader/loading-revolving-thing/)
