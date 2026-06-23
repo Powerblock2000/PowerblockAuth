@@ -3,7 +3,7 @@
 ---
 **Welcome to Powerblock Auth, the simple way to authenticate clients with Nakama!**
 
-Test the example project [here](https://powerblock2000.github.io/PowerblockAuth/WEBSITE/r2/index.html)
+Test the example project [here](https://powerblock2000.github.io/PowerblockAuth/WEBSITE/r2/index.html) (<- the login demo currently doesn't work beacuse there is no server set in the settings)
 
 This guide will help you get setup!
 
